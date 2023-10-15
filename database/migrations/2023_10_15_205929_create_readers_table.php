@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('readers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); // Foreign key to the users table
+            $table->string('favorite_genre');
+            $table->string('reading_level');
+            $table->string('last_book');
             $table->timestamps();
         });
     }

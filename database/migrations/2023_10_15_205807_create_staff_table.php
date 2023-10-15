@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); // Foreign key to the users table
+            $table->string('department');
+            $table->string('position');
             $table->timestamps();
         });
     }
