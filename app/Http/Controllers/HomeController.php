@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()->user();
+
+        // Get the user's role using Spatie
+        $role = $user->getRoleNames()->toArray();
+
+        if (in_array('admin', $role)) {
+            return view('admin.dashboard'); // Load the Admin Dashboard view
+        } elseif (in_array('viewer', $role)) {
+            return view('viewer.dashboard'); // Load the Viewer Dashboard view
+        } elseif (in_array('editor', $role)) {
+            return view('editor.dashboard'); // Load the Editor Dashboard view
+        } elseif (in_array('reader', $role)) {
+            return view('reader.dashboard'); // Load the Reader Dashboard view
+        } else {
+            return view('auth.login');
+        }
     }
 }
