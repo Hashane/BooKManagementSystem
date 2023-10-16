@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 
 class LoginController extends Controller
 {
@@ -36,5 +41,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function attemptLogin(Request $request)
+    {
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::user();
+
+            // Get the user's role using Spatie
+            $role = $user->getRoleNames()->toArray();
+
+            if (in_array('admin', $role) || in_array('viewer', $role) || in_array('editor', $role)) {
+                Auth::shouldUse('staff'); // Assign the "staff" guard
+            } else {
+                Auth::shouldUse('reader'); // Assign the "staff" guard
+            }
+        }
     }
 }

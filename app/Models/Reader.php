@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reader extends User
 {
-    use HasFactory;
+    protected $guard = 'reader';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'favorite_genre',
         'reading_level',

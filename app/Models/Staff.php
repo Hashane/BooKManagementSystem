@@ -2,10 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
-class Staff extends Model
+class Staff extends User
 {
-    use HasFactory;
+    protected $guard = 'staff';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'employee_id',
+        'department',
+        'position',
+    ];
 }
