@@ -30,7 +30,11 @@ class ReaderLoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('reader')->logout(); // Use the 'reader' guard
+        // Log out from the 'staff' guard
+        Auth::guard('staff')->logout();
+
+        // Log out from the 'reader' guard
+        Auth::guard('reader')->logout();
         $request->session()->invalidate();
 
         return redirect('/reader/login'); // Redirect to the reader login page
