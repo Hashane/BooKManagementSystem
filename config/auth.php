@@ -42,11 +42,11 @@ return [
         ],
         'staff' => [
             'driver' => 'session',
-            'provider' => 'staffs',
+            'provider' => 'staff',
         ],
         'reader' => [
             'driver' => 'session',
-            'provider' => 'readers',
+            'provider' => 'reader',
         ],
     ],
 
@@ -72,11 +72,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'staffs' => [
+        'staff' => [
             'driver' => 'eloquent',
             'model' => App\Models\Staff::class,
         ],
-        'readers' => [
+        'reader' => [
             'driver' => 'eloquent',
             'model' => App\Models\Reader::class,
         ],

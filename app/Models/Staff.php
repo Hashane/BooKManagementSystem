@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\User;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
-class Staff extends User
+class Staff extends Authenticatable
 {
+    use Notifiable, HasApiTokens, HasFactory, Notifiable, HasRoles;
     protected $guard = 'staff';
 
     /**
@@ -14,8 +19,28 @@ class Staff extends User
      * @var array<int, string>
      */
     protected $fillable = [
-        'employee_id',
-        'department',
-        'position',
+        'name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 }

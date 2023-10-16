@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\ReaderLoginController;
+use App\Http\Controllers\Auth\StaffLoginController;
+use App\Http\Controllers\Reader\ReaderController;
+use App\Http\Controllers\Staff\StaffController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,25 +23,28 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Common dashboard accessible to both 'staff' and 'reader' users
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
 
-// Book management routes restricted to 'staff' users
-Route::prefix('books')->group(function () {
-    Route::get('/index', function () {
-        return view('books.index');
-    })->middleware('auth:staff'); // Restrict access to 'staff' users
+// Staff login routes
+Route::get('staff/login', [StaffLoginController::class, 'showLoginForm'])->name('staff.login');
+Route::post('staff/login', [StaffLoginController::class, 'login']);
 
-    Route::get('/edit', function () {
-        return view('books.edit');
-    })->middleware('auth:staff'); // Restrict access to 'staff' users
+// Reader login routes
+Route::get('reader/login', [ReaderLoginController::class, 'showLoginForm'])->name('reader.login');
+Route::post('reader/login', [ReaderLoginController::class, 'login']);
 
-    Route::get('/create', function () {
-        return view('books.create');
-    })->middleware('auth:staff'); // Restrict access to 'staff' users
+
+Route::middleware(['auth:staff'])->group(function () {
+    // Routes for "staff" guard
+    Route::get('/staff/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
+    // Add more routes specific to the "staff" guard
 });
+
+Route::middleware(['auth:reader'])->group(function () {
+    // Routes for "reader" guard
+    Route::get('/reader/dashboard', [ReaderController::class, 'index'])->name('reader.dashboard');
+    // Add more routes specific to the "reader" guard
+});
+
 
 // 'reader' user-specific routes
 Route::get('/borrowed-books', function () {

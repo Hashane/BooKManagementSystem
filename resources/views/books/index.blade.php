@@ -1,4 +1,5 @@
-@extends('layout')
+@extends('layouts.app')
+
 
 @section('content')
 <h1>Book List</h1>
