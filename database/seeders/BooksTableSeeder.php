@@ -16,7 +16,7 @@ class BooksTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             // Create a Reader record with a random User ID
             Book::create([
                 'title' => $faker->title,
