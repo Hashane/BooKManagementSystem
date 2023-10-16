@@ -21,17 +21,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// For staff authentication
+Route::prefix('staff')->group(function () {
+    Route::get('login', [StaffLoginController::class, 'showLoginForm'])->name('staff.login');
+    Route::post('login', [StaffLoginController::class, 'login']);
+    Route::post('logout', [StaffLoginController::class, 'logout'])->name('staff.logout');
+    // Todo password reset.
+});
 
-
-// Staff login routes
-Route::get('staff/login', [StaffLoginController::class, 'showLoginForm'])->name('staff.login');
-Route::post('staff/login', [StaffLoginController::class, 'login']);
-
-// Reader login routes
-Route::get('reader/login', [ReaderLoginController::class, 'showLoginForm'])->name('reader.login');
-Route::post('reader/login', [ReaderLoginController::class, 'login']);
-
+// For reader authentication
+Route::prefix('reader')->group(function () {
+    Route::get('login', [ReaderLoginController::class, 'showLoginForm'])->name('reader.login');
+    Route::post('login', [ReaderLoginController::class, 'login']);
+    Route::post('logout', [ReaderLoginController::class, 'logout'])->name('reader.logout');
+    // Todo password reset.
+});
 
 Route::middleware(['auth:staff'])->group(function () {
     // Routes for "staff" guard
