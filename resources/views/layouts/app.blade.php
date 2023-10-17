@@ -19,15 +19,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!--  Custom CSS for the sidebar -->
-    <link rel="stylesheet" href="{{ asset('css/custom-sidebar.css') }}">
-
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-    <!-- Bootstrap JavaScript and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -105,34 +98,22 @@
                 </div>
             </div>
         </nav>
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Include the sidebar partial -->
-                @include('common-components/sidebar')
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-                    @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                    @endif
-
-                    @if (session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                    @endif
-                    @yield('content')
-
-                </main>
+        <main class="py-4">
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
-        </div>
+            @endif
 
-        <!-- Include Bootstrap JavaScript and jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
 
+            @yield('content')
+        </main>
     </div>
 </body>
 
