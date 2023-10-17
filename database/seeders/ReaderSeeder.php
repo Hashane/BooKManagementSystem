@@ -23,6 +23,7 @@ class ReaderSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'password' => Hash::make('abc@123'),
+                'active' => true,
             ]);
             $user->assignRole('reader');
         }

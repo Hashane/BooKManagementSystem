@@ -24,6 +24,7 @@ class StaffSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => Hash::make('abc@123'),
+            'active' => true,
         ]);
 
         // Create the 'admin' role if it doesn't exist
@@ -39,6 +40,7 @@ class StaffSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'password' => Hash::make('abc@123'),
+                'active' => true,
             ]);
 
             // Assign roles based on conditions
