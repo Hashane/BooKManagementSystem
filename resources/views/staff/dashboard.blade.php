@@ -11,7 +11,6 @@
         <div class="col-md-10">
             @include('layouts.cards')
         </div>
-        <!-- Add more cards for admin and editor functions -->
     </div>
     @endif
 

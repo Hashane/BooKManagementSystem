@@ -30,14 +30,17 @@ Route::prefix('reader')->group(function () {
 
 // Admin Dashboard Routes
 Route::middleware(['auth:staff', 'role:admin'])->group(function () {
-    Route::get('/staff/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
-    Route::get('/staff/books', [BookController::class, 'index'])->name('staff.books');
+    Route::resource('/staff/books', BookController::class);
     Route::get('/staff/manage-users', [UserManagementController::class, 'index'])->name('staff.manage-users');
     Route::get('/staff/assign-books', [StaffController::class, 'assignBooks'])->name('staff.assign-books');
     Route::get('/staff/borrowed-books', [StaffController::class, 'borrowedBooks'])->name('staff.borrowed-books');
     Route::get('/staff/borrowing-history', [StaffController::class, 'borrowingHistory'])->name('staff.borrowing-history');
 });
 
+//Admin, Editor, Viewer
+Route::middleware(['auth:staff', 'role:editor|admin|viewer'])->group(function () {
+    Route::get('/staff/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
+});
 // Reader Dashboard Routes
 Route::middleware(['auth:reader', 'role:reader'])->group(function () {
     Route::get('/reader/dashboard', [ReaderController::class, 'index'])->name('reader.dashboard');
