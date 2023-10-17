@@ -14,30 +14,33 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        $adminRole = Role::create(['name' => 'admin']);
-        $viewerRole = Role::create(['name' => 'viewer']);
-        $editorRole = Role::create(['name' => 'editor']);
-        $readerRole = Role::create(['name' => 'reader']);
+        $adminRole = Role::create(['name' => 'admin', 'guard_name' => 'staff']);
+        $viewerRole = Role::create(['name' => 'viewer', 'guard_name' => 'staff']);
+        $editorRole = Role::create(['name' => 'editor', 'guard_name' => 'staff']);
+        $readerRole = Role::create(['name' => 'reader', 'guard_name' => 'reader']);
 
         // create permissions
-        $viewBooksPermission = Permission::create(['name' => 'view books']);
-        $editBooksPermission = Permission::create(['name' => 'edit books']);
-        $deleteBooksPermission = Permission::create(['name' => 'delete books']);
-        $assignBooksPermission = Permission::create(['name' => 'assign books']);
-        $manageUsersPermission =  Permission::create(['name' => 'manage users']);
-        $borrowBooksPermission = Permission::create(['name' => 'borrow books']);
+        $editBooksPermission = Permission::create(['name' => 'edit books', 'guard_name' => 'staff']);
+        $deleteBooksPermission = Permission::create(['name' => 'delete books', 'guard_name' => 'staff']);
+        $assignBooksPermission = Permission::create(['name' => 'assign books', 'guard_name' => 'staff']);
+        $manageUsersPermission = Permission::create(['name' => 'manage users', 'guard_name' => 'staff']);
+        $borrowBooksPermission = Permission::create(['name' => 'borrow books', 'guard_name' => 'reader']);
+        // For the "staff" guard
+        $viewBooksPermissionStaff = Permission::create(['name' => 'view books', 'guard_name' => 'staff']);
+        // For the "reader" guard
+        $viewBooksPermissionReader = Permission::create(['name' => 'view books', 'guard_name' => 'reader']);
 
         // Assign Permissions to Roles
         $adminRole->givePermissionTo([
-            $viewBooksPermission,
+            $viewBooksPermissionStaff,
             $editBooksPermission,
             $deleteBooksPermission,
             $manageUsersPermission,
             $assignBooksPermission,
         ]);
 
-        $viewerRole->givePermissionTo($viewBooksPermission);
+        $viewerRole->givePermissionTo($viewBooksPermissionStaff);
         $editorRole->givePermissionTo([$editBooksPermission, $assignBooksPermission]);
-        $readerRole->givePermissionTo([$viewBooksPermission, $borrowBooksPermission]);
+        $readerRole->givePermissionTo([$viewBooksPermissionReader, $borrowBooksPermission]);
     }
 }

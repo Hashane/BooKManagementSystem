@@ -31,7 +31,7 @@ class HomeController extends Controller
         $role = $user->getRoleNames()->toArray();
 
         if (in_array('admin', $role)) {
-            return view('admin.dashboard'); // Load the Admin Dashboard view
+            return view('staff.dashboard'); // Load the Admin Dashboard view
         } elseif (in_array('viewer', $role)) {
             return view('viewer.dashboard'); // Load the Viewer Dashboard view
         } elseif (in_array('editor', $role)) {
