@@ -23,6 +23,9 @@
                         <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary">
                             <i class="fa fa-eye"></i>
                         </a>
+                        <a href="{{ route('books.assign-post', $book->id) }}" class="btn btn-primary">
+                            <i class="fa fa-eye"></i>
+                        </a>
                         <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary"> <i
                                 class="fa fa-edit"></i></a>
                         <form method="POST" action="{{ route('books.destroy', $book->id) }}" style="display: inline;">

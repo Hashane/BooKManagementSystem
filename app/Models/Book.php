@@ -19,4 +19,16 @@ class Book extends Model
         'author',
         'publication_year',
     ];
+
+    protected $guarded = [];
+
+    public function bookCopies()
+    {
+        return $this->hasMany(BookCopy::class);
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(BookAssignment::class, 'book_id');
+    }
 }

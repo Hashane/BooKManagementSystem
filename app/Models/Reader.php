@@ -43,4 +43,9 @@ class Reader extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function assignments()
+    {
+        return $this->hasMany(BookAssignment::class, 'reader_id');
+    }
 }

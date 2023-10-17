@@ -12,12 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('book_copies', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('author');
-            $table->integer('publication_year');
-            $table->integer('count')->default(0);
+            $table->unsignedBigInteger('book_id'); // Foreign key to book
+            $table->string('copy_number'); //Unique id for each copy
+            $table->string('condition')->nullable(); // Condition of the copy
+            $table->string('status')->default('available'); // Status of the copy
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('book_copies');
     }
 };
