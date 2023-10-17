@@ -40,7 +40,7 @@ class RolesAndPermissionsSeeder extends Seeder
         ]);
 
         $viewerRole->givePermissionTo($viewBooksPermissionStaff);
-        $editorRole->givePermissionTo([$editBooksPermission, $assignBooksPermission]);
+        $editorRole->givePermissionTo([$viewBooksPermissionStaff, $editBooksPermission, $assignBooksPermission]);
         $readerRole->givePermissionTo([$viewBooksPermissionReader, $borrowBooksPermission]);
     }
 }
