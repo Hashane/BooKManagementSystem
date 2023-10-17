@@ -6,6 +6,7 @@ use App\Http\Controllers\BorrowBooksController;
 use App\Http\Controllers\Reader\ReaderController;
 use App\Http\Controllers\Staff\BookController;
 use App\Http\Controllers\Staff\StaffController;
+use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -36,6 +37,8 @@ Route::middleware(['auth:staff', 'role:admin'])->group(function () {
     Route::get('/staff/borrowed-books', [StaffController::class, 'showBorrowed'])->name('staff.borrowed-books');
     Route::get('/staff/borrowing-history', [StaffController::class, 'borrowingHistory'])->name('staff.borrowing-history');
     Route::get('/books/{bookAssignment}/return', [BorrowBooksController::class, 'returnForm'])->name('books.return-form');
+
+    Route::post('/staff/manage-users', [UserManagementController::class, 'activateUsers']);
     Route::post('/books/{bookAssignment}/return', [BorrowBooksController::class, 'returnBook'])->name('books.return');
 });
 
