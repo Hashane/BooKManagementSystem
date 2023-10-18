@@ -22,15 +22,19 @@
                     <td>{{ $book->author }}</td>
                     <td>{{ $book->publication_year }}</td>
                     <td>
+                        @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('editor') )
                         <a href="{{ route('books.assign-post', $book->id) }}" class="btn btn-primary" title="Assign">
                             <i class="fa fa-tasks"></i>
                         </a>
+                        @endif
                         <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary" title="View">
                             <i class="fa fa-eye"></i>
                         </a>
+                        @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('editor') )
                         <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary" title="Edit">
                             <i class="fa fa-edit"></i>
                         </a>
+                        @endif
                         @if (Auth::user()->hasRole('admin'))
                         <form method="POST" action="{{ route('books.destroy', $book->id) }}" style="display: inline;">
                             @csrf
