@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BookAssigned;
 use App\Models\Book;
 use App\Models\BookAssignment;
 use App\Models\Reader;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookController extends Controller
 {
@@ -44,6 +46,9 @@ class BookController extends Controller
         // Update the book's available copies count
         $book->count -= 1;
         if ($book->save()) :
+            // Send the email
+            $reader =  Reader::find($readerId);
+            Mail::to($reader->email)->send(new BookAssigned($book, $dueDate));
             return redirect()->route('books.show', $book->id)->with('success', 'Book assigned successfully');
         else :
             return redirect()->route('books.show', $book->id)->with('error', 'Failed! Try again');
