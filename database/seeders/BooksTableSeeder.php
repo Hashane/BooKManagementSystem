@@ -6,6 +6,8 @@ use App\Models\Book;
 use App\Models\Staff;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Str;
+
 
 class BooksTableSeeder extends Seeder
 {
@@ -21,8 +23,10 @@ class BooksTableSeeder extends Seeder
             Book::create([
                 'title' => $faker->sentence,
                 'author' => $faker->name,
-                'count' => $faker->numberBetween(1, 19),
+                'genre' => $faker->randomElement(['Fiction', 'Science Fiction', 'Mystery', 'Romance', 'Fantasy', 'Non-Fiction']),
                 'publication_year' => $faker->year(),
+                'description' => Str::limit($faker->paragraph, 200),
+                'count' => $faker->numberBetween(1, 20),
             ]);
         }
     }

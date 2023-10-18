@@ -46,7 +46,7 @@ class BookController extends Controller
         if ($book->save()) :
             return redirect()->route('books.show', $book->id)->with('success', 'Book assigned successfully');
         else :
-            return redirect()->route('books.show', $book->id)->with('success', 'Failed! Try again');
+            return redirect()->route('books.show', $book->id)->with('error', 'Failed! Try again');
         endif;
     }
     /**
@@ -97,7 +97,30 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'author' => 'required|max:255',
+            'genre' => 'required',
+            'year' => 'required|integer',
+            'description' => 'nullable|max:500',
+            'count' => 'required|integer',
+        ]);
+
+        $book = Book::find($id);
+
+        if ($book) {
+            $book->title = $request->input('title');
+            $book->author = $request->input('author');
+            $book->genre = $request->input('genre');
+            $book->publication_year = $request->input('year');
+            $book->description = $request->input('description');
+            $book->count = $request->input('count');
+            if ($book->save())
+                return redirect()->route('books.show', $book->id)->with('success', 'Book updated successfully');
+            else
+                return redirect()->route('books.show', $book->id)->with('error', 'Failed! Try again');
+        } else
+            return redirect()->route('books.show', $book->id)->with('error', 'Failed! Try again');
     }
 
     /**
@@ -105,6 +128,5 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
     }
 }
