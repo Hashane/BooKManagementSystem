@@ -34,6 +34,24 @@ class StaffSeeder extends Seeder
         // Assign the 'admin' role to the admin user
         $admin->assignRole($adminRole);
 
+
+        $user1 = Staff::create([
+            'name' => 'editor',
+            'email' => 'editor@gmail.com',
+            'password' => Hash::make('abc@123'),
+            'active' => true,
+        ]);
+        $user1->assignRole('editor');
+
+        $user2 = Staff::create([
+            'name' => 'viewer',
+            'email' => 'viewer@gmail.com',
+            'password' => Hash::make('abc@123'),
+            'active' => true,
+        ]);
+        $user2->assignRole('viewer');
+
+
         // Create sample users and assign roles
         for ($i = 1; $i <= 5; $i++) {
             $user = Staff::create([
