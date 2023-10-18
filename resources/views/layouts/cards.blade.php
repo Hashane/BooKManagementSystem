@@ -1,8 +1,10 @@
 @section('content')
 <div class="container">
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card" style="height: 100%;">
+    <h2 class="text-center mt-4 mb-4">Dashboard</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-center mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Manage Books</h5>
                     <p class="card-text">View, Edit, and Delete Books.</p>
@@ -11,8 +13,8 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="card" style="height: 100%;">
+        <div class="col-md-4">
+            <div class="card text-center mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Manage Users</h5>
                     <p class="card-text">Activate or Inactivate Staff/Reader Users.</p>
@@ -20,25 +22,13 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card" style="height: 100%;">
-                <div class="card-body">
-                    <h5 class="card-title">Borrowed Books</h5>
-                    <p class="card-text">View Borrowed Books.</p>
-                    <a href="{{ route('staff.borrowed-books') }}" class="btn btn-primary">View Borrowed Books</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card" style="height: 100%;">
+        <div class="col-md-4">
+            <div class="card text-center mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Borrowing History</h5>
-                    <p class "card-text">View Previous Borrowing History.</p>
-                    <a href="{{ route('staff.borrowing-history') }}" class="btn btn-primary">View Borrowing History</a>
+                    <p class="card-text">View Borrowed Books.</p>
+                    <a href="{{ route('staff.borrowed-books') }}" class="btn btn-primary">View Borrowed Books</a>
                 </div>
             </div>
         </div>

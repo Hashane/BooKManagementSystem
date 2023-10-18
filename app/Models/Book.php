@@ -17,7 +17,10 @@ class Book extends Model
     protected $fillable = [
         'title',
         'author',
+        'genre',
         'publication_year',
+        'description',
+        'count',
     ];
 
     protected $guarded = [];

@@ -54,7 +54,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all(); // Replace 'Book' with your actual model name
+        $books = Book::all();
         return view('books.index', compact('books'));
     }
 
@@ -63,7 +63,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -71,8 +71,30 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'author' => 'required|max:255',
+            'genre' => 'required',
+            'publication_year' => 'required|integer',
+            'description' => 'nullable|max:500',
+            'count' => 'required|integer',
+        ]);
+
+        $book = new Book;
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        $book->genre = $request->input('genre');
+        $book->publication_year = $request->input('publication_year');
+        $book->description = $request->input('description');
+        $book->count = $request->input('count');
+
+        if ($book->save()) {
+            return redirect()->route('books.show', $book->id)->with('success', 'Book created successfully');
+        } else {
+            return redirect()->route('books.create')->with('error', 'Failed! Try again');
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -128,5 +150,14 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
+        $book = Book::find($id);
+
+        $books = Book::all();
+        if ($book) {
+            $book->delete();
+            return redirect()->route('books.index', compact('books'))->with('success', 'Book deleted successfully');
+        } else {
+            return redirect()->route('books.index', compact('books'))->with('error', 'Book could not be deleted');
+        }
     }
 }
