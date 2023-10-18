@@ -19,4 +19,9 @@ class BookAssignment extends Model
     {
         return $this->belongsTo(Reader::class);
     }
+
+    public function bookCopy()
+    {
+        return $this->hasOne(BookCopy::class, 'book_id');
+    }
 }

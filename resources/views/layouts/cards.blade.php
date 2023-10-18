@@ -7,7 +7,7 @@
             <div class="card text-center mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Manage Books</h5>
-                    <p class="card-text">View, Edit, and Delete Books.</p>
+                    <p class="card-text">View | Edit @if (Auth::user()->hasRole('admin')) | Delete @endif Books.</p>
                     <a href="{{ route('books.index') }}" class="btn btn-primary">Go to Book Management</a>
                 </div>
             </div>

@@ -45,7 +45,7 @@ class Reader extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function assignments()
+    public function assignedBooks()
     {
         return $this->hasMany(BookAssignment::class, 'reader_id');
     }

@@ -57,7 +57,6 @@ Route::middleware(['auth:staff', 'role:editor|admin|viewer', 'preventBack'])->gr
 
     //logout
     Route::post('staff/logout', [StaffLoginController::class, 'logout'])->name('staff.logout');
-    Route::post('reader/logout', [ReaderLoginController::class, 'logout'])->name('reader.logout');
 });
 
 //Admin, Editor
@@ -72,8 +71,10 @@ Route::middleware(['auth:staff', 'role:editor|admin', 'preventBack'])->group(fun
 });
 
 // Reader Dashboard Routes
-Route::middleware(['auth:reader', 'role:reader'])->group(function () {
+Route::middleware(['auth:reader', 'role:reader', 'preventBack'])->group(function () {
     Route::get('/reader/dashboard', [ReaderController::class, 'index'])->name('reader.dashboard');
+    Route::get('/reader/books/{book}', [ReaderController::class, 'showBook'])->name('books.show-reader');
     Route::get('/reader/borrowed-books', [ReaderController::class, 'borrowedBooks'])->name('reader.borrowed-books');
     Route::get('/reader/borrowing-history', [ReaderController::class, 'borrowingHistory'])->name('reader.borrowing-history');
+    Route::post('reader/logout', [ReaderLoginController::class, 'logout'])->name('reader.logout');
 });

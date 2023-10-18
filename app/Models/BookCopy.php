@@ -15,8 +15,8 @@ class BookCopy extends Model
         return $this->belongsTo(Book::class);
     }
 
-    public function assignments()
+    public function assignment()
     {
-        return $this->morphMany(Assignment::class, 'assignable');
+        return $this->belongsTo(BookAssignment::class, 'assignable');
     }
 }

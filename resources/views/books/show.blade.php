@@ -18,7 +18,8 @@
                             <p><strong>Author:</strong> {{ $book->author }}</p>
                             <p><strong>Genre:</strong> {{ $book->genre }}</p>
                             <p><strong>Publication Year:</strong> {{ $book->publication_year }}</p>
-                            <p><strong>Available Copies:</strong> {{ $book->count }}</p>
+                            @if (!Auth::user()->hasRole('reader')) <p><strong>Available Copies:</strong> {{ $book->count
+                                }}</p> @endif
                         </div>
                     </div>
                     <hr>
