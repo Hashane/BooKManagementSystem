@@ -82,10 +82,11 @@
     });
         // Function to handle checkbox changes
         function handleCheckboxChange(model, id, isChecked) {
+            const value = isChecked ? 1 : 0;
             $.post('manage-users', {
                 model: model,
                 id: id,
-                isChecked: isChecked,
+                isChecked: value,
             })
             .done(function (data) {
                 console.log(data.message); 

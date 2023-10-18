@@ -30,9 +30,11 @@ class UserManagementController extends Controller
             $staff = Staff::find($userId);
 
             if ($staff) {
-                $staff->active = $isChecked ? 1 : 0;
-                $staff->save();
-                return response()->json(['message' => 'Staff member activated successfully']);
+                $staff->active = $isChecked;
+                if ($staff->save()) {
+                    $message = $isChecked ? 'activated' : 'deactivated';
+                    return response()->json(['message' => "Staff member $message successfully"]);
+                }
             } else {
                 return response()->json(['error' => 'Staff member not found'], 404);
             }
@@ -41,8 +43,10 @@ class UserManagementController extends Controller
 
             if ($reader) {
                 $reader->active = $isChecked ? 1 : 0;
-                $reader->save();
-                return response()->json(['message' => 'Reader activated successfully']);
+                if ($reader->save()) {
+                    $message = $isChecked ? 'activated' : 'deactivated';
+                    return response()->json(['message' => "Reader $message successfully"]);
+                }
             } else {
                 return response()->json(['error' => 'Reader not found'], 404);
             }
