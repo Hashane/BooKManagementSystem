@@ -37,7 +37,7 @@ Route::middleware(['auth:staff', 'role:admin', 'preventBack'])->group(function (
     Route::delete('/staff/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
 
     Route::get('/staff/borrowed-books', [StaffController::class, 'showBorrowed'])->name('staff.borrowed-books');
-    Route::get('/staff/borrowing-history', [StaffController::class, 'borrowingHistory'])->name('staff.borrowing-history');
+    //  Route::get('/staff/borrowing-history', [StaffController::class, 'borrowingHistory'])->name('staff.borrowing-history');
 
     Route::get('/staff/manage-users', [UserManagementController::class, 'index'])->name('staff.manage-users');
     Route::post('/staff/manage-users', [UserManagementController::class, 'activateUsers']);

@@ -13,6 +13,7 @@
             </div>
         </div>
 
+        @if (Auth::user()->hasRole('admin'))
         <div class="col-md-4">
             <div class="card text-center mb-4">
                 <div class="card-body">
@@ -32,6 +33,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 @endsection

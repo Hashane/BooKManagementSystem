@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-    <a href="{{ route('books.create') }}" class="btn btn-success mb-4">Create New Book</a>
+    @if (Auth::user()->hasRole('admin')) <a href="{{ route('books.create') }}" class="btn btn-success mb-4">Create New
+        Book</a> @endif
     <h2 class="mb-4">Book List</h2>
     <div class="table-responsive">
         <table class="table table-striped table-hover">
@@ -30,6 +31,7 @@
                         <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary" title="Edit">
                             <i class="fa fa-edit"></i>
                         </a>
+                        @if (Auth::user()->hasRole('admin'))
                         <form method="POST" action="{{ route('books.destroy', $book->id) }}" style="display: inline;">
                             @csrf
                             @method('DELETE')
@@ -38,6 +40,7 @@
                                 <i class="fa fa-trash"></i>
                             </button>
                         </form>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
