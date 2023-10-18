@@ -17,7 +17,7 @@
                             <p><strong>Title:</strong> {{ $book->title }}</p>
                             <p><strong>Author:</strong> {{ $book->author }}</p>
                             <p><strong>Genre:</strong> {{ $book->genre }}</p>
-                            <p><strong>BK:</strong> {{ $book->isbn }}</p>
+                            <p><strong>Publication Year:</strong> {{ $book->publication_year }}</p>
                             <p><strong>Available Copies:</strong> {{ $book->count }}</p>
                         </div>
                     </div>
