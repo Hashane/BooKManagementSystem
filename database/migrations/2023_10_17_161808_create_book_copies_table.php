@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id'); // Foreign key to book
             $table->string('copy_number'); //Unique id for each copy
             $table->string('condition')->nullable(); // Condition of the copy
-            $table->string('status')->default('available'); // Status of the copy
+            $table->boolean('status')->default(1); // Status of the copy
             $table->timestamps();
         });
     }

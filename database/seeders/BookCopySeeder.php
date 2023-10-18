@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Book;
 use App\Models\BookCopy;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class BookCopySeeder extends Seeder
 {
@@ -17,6 +17,8 @@ class BookCopySeeder extends Seeder
         // Retrieve existing books
         $books = Book::all();
 
+        $faker = Faker::create();
+
         foreach ($books as $book) {
             // Create multiple book copies for each book
             for ($i = 1; $i <= 5; $i++) {
@@ -24,7 +26,7 @@ class BookCopySeeder extends Seeder
                     'book_id' => $book->id,
                     'copy_number' => 'BK-' . $i,
                     'condition' => 'Good', // Set the condition
-                    'status' => 'available', // Set the status
+                    'status' => $faker->boolean(),
                 ]);
             }
         }

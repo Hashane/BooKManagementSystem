@@ -15,9 +15,11 @@ class BookController extends Controller
     public function showAssign($id)
     {
         $book = Book::find($id);
+        $copiesAvailable = $book->bookCopies->where('status', '1');
+        $availableCopiesCount = count($copiesAvailable);
         $readers = Reader::all();
 
-        return view('books.assign', compact('book', 'readers'));
+        return view('books.assign', compact('book', 'readers', 'availableCopiesCount'));
     }
 
     public function doAssign(Request $request, $id)
@@ -45,7 +47,12 @@ class BookController extends Controller
 
         // Update the book's available copies count
         $book->count -= 1;
-        if ($book->save()) :
+
+        //make specific copy unavailable
+        $firstAvailableCopy = $book->bookCopies->where('status', '1')->first();
+        $firstAvailableCopy->status = 0;
+
+        if ($book->save() && $firstAvailableCopy->save()) :
             // Send the email
             $reader =  Reader::find($readerId);
             Mail::to($reader->email)->send(new BookAssigned($book, $dueDate));
@@ -107,7 +114,13 @@ class BookController extends Controller
     public function show(string $id)
     {
         $book = Book::find($id);
-        return view('books.show', compact('book'));
+        $totalCopies = $book->bookCopies;
+        $copiesAvailable = $totalCopies->where('status', '1');
+
+        $availableCopiesCount = count($copiesAvailable);
+        $totalCopiesCount = count($totalCopies);
+
+        return view('books.show', compact('book', 'availableCopiesCount', 'totalCopiesCount'));
     }
 
     /**
@@ -130,7 +143,6 @@ class BookController extends Controller
             'genre' => 'required',
             'year' => 'required|integer',
             'description' => 'nullable|max:500',
-            'count' => 'required|integer',
         ]);
 
         $book = Book::find($id);
@@ -141,7 +153,7 @@ class BookController extends Controller
             $book->genre = $request->input('genre');
             $book->publication_year = $request->input('year');
             $book->description = $request->input('description');
-            $book->count = $request->input('count');
+            //$book->count = $request->input('count');
             if ($book->save())
                 return redirect()->route('books.show', $book->id)->with('success', 'Book updated successfully');
             else
