@@ -80,26 +80,22 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 @if (Auth::guard('staff')->check())
-                                <a class="dropdown-item" href="{{ route('staff.logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('staff-logout-form').submit();">
-                                    {{ __('Staff Logout') }}
-                                </a>
+                                <form id="staff-logout-form" action="{{ route('staff.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">
+                                        {{ __('Logout') }}
+                                    </button>
+                                </form>
                                 @else
-                                <a class="dropdown-item" href="{{ route('reader.logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('reader-logout-form').submit();">
-                                    {{ __('Reader Logout') }}
-                                </a>
+                                <form id="reader-logout-form" action="{{ route('reader.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">
+                                        {{ __('Logout') }}
+                                    </button>
+                                </form>
                                 @endif
-
-                                <form id="staff-logout-form" action="{{ route('staff.logout') }}" method="POST"
-                                    class="d-none">
-                                    @csrf
-                                </form>
-                                <form id="reader-logout-form" action="{{ route('reader.logout') }}" method="POST"
-                                    class="d-none">
-                                    @csrf
-                                </form>
                             </div>
+
                         </li>
                         @endguest
                     </ul>

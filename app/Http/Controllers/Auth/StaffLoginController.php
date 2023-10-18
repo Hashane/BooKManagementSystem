@@ -32,11 +32,7 @@ class StaffLoginController extends Controller
     {
         // Log out from the 'staff' guard
         Auth::guard('staff')->logout();
-
-        // Log out from the 'reader' guard
-        Auth::guard('reader')->logout();
         $request->session()->invalidate();
-
         return redirect('/staff/login'); // Redirect to the staff login page
     }
 }

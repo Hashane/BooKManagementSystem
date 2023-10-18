@@ -15,8 +15,11 @@ class Authenticate extends Middleware
         if (!$request->expectsJson() && !auth()->check()) {
             if ($request->is('staff/*')) {
                 return route('staff.login'); // Redirect staff users to the staff login route.
-            } else
+            } elseif ($request->is('reader/*')) {
                 return route('reader.login'); // Redirect reader users to the reader login route.
+            } else {
+                return route('/'); // Redirect other users to a default login route.
+            }
         }
     }
 }
