@@ -4,7 +4,7 @@
 
 Welcome to the documentation for the Book Management System. The dashboard provides an overview of various features and functionalities available to different user roles, such as administrators and staff members.
 
-<img src="{{ asset('images/dashboard.png') }}" alt="dashboard">
+![Alt Text](images/dashboard.png)
 
 ## User Management
 
@@ -12,19 +12,19 @@ Welcome to the documentation for the Book Management System. The dashboard provi
 
 -   **Description:** View, Edit, and Delete Books.
 
-<img src="{{ asset('images/bookList.png') }}" alt="books">
+![Alt Text](images/bookList.png)
 
 ### Manage Users (Admin Only)
 
 -   **Description:** Activate or Inactivate Staff/Reader Users.
 
-<img src="{{ asset('images/users.png') }}" alt="books">
+![Alt Text](images/users.png)
 
 ### Borrowing History (Admin Only)
 
 -   **Description:** View Borrowed Books.
 
-<img src="{{ asset('images/borrowed.png') }}" alt="books">
+![Alt Text](images/borrowed.png)
 
 ## API Routes
 
