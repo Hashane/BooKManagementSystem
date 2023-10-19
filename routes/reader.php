@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // UNAUTH API FOR USE LOGIN
-Route::post('reader/apilogin', [ReaderAPILoginController::class, 'readerLogin'])->name('reader.api-login');
+Route::post('reader/create-token', [ReaderAPILoginController::class, 'readerLogin']);
+
 
 // AUTHENTICATION API FOR USE
 Route::group(['prefix' => 'reader', 'middleware' => ['auth:reader-api', 'scopes:reader']], function () {

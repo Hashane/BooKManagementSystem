@@ -19,19 +19,24 @@ class ReaderAPILoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-
             return response()->json(['error' => $validator->errors()->all()]);
         }
 
         if (Auth::guard('reader')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::guard('reader')->user();
 
-            config(['auth.guards.api.provider' => 'reader']);
+            // Retrieve the user's permissions
+            $permissions = $user->getAllPermissions();
 
-            $token = Auth::guard('reader')->user()->createToken('MyApp', ['reader'])->accessToken;
+            // Extract permission names and use them as scopes
+            $scopes = $permissions->pluck('name')->toArray();
+            $scopes = array_map('trim', $scopes);
+
+            // Create a token with the dynamically generated scopes
+            $token = $user->createToken('MyToken', $scopes);
 
             return response()->json(['token' => $token], 200);
         } else {
-
             return response()->json(['error' => ['Email and Password are Wrong.']], 200);
         }
     }
