@@ -63,6 +63,25 @@ return [
             ]) : [],
         ],
 
+        'second_mysql' => [ // Name it 'second_mysql' or choose a different name.
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_SECOND', '127.0.0.1'), // Use the DB_HOST_SECOND variable.
+            'port' => env('DB_PORT_SECOND', '3306'), // Use the DB_PORT_SECOND variable.
+            'database' => env('DB_DATABASE_SECOND', 'book_management_backup'), // Use the DB_DATABASE_SECOND variable.
+            'username' => env('DB_USERNAME_SECOND', 'sail'), // Use the DB_USERNAME_SECOND variable.
+            'password' => env('DB_PASSWORD_SECOND', 'password'), // Use the DB_PASSWORD_SECOND variable.
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
@@ -125,7 +144,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
