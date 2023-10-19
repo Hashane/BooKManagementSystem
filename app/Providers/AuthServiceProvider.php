@@ -40,9 +40,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::tokensCan([
-            'read-books' => 'Read Books',
+            'view-books' => 'Read Books',
             'create-books' => 'Create Books',
             'edit-books' => 'Edit Books',
+            'assign-books' => 'Assign Books',
+            'manage-users' => 'Manage Users',
+            'borrow-books' => 'Borrow Books',
         ]);
     }
 }
