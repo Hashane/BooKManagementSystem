@@ -1,46 +1,91 @@
 # Book System Documentation
 
-Welcome to the documentation for the Book System. This document provides an overview of the available routes and their purposes.
+## Dashboard
 
-## API Routes
-
-### Retrieve a Specific Resource
-
--   **HTTP Method:** GET
--   **Endpoint:** `/api/resource`
--   **Description:** Retrieve a specific resource.
-
-### Create a New Resource
-
--   **HTTP Method:** POST
--   **Endpoint:** `/api/resource`
--   **Description:** Create a new resource.
-
-### Update an Existing Resource
-
--   **HTTP Method:** PUT
--   **Endpoint:** `/api/resource/{id}`
--   **Description:** Update an existing resource.
-
-### Delete a Resource
-
--   **HTTP Method:** DELETE
--   **Endpoint:** `/api/resource/{id}`
--   **Description:** Delete a resource.
+Welcome to the documentation for the Book Management System. The dashboard provides an overview of various features and functionalities available to different user roles, such as administrators and staff members.
 
 ## User Management
 
-### Manage Books
+### Manage Books (Admin & Editor only)
 
 -   **Description:** View, Edit, and Delete Books.
--   **URL:** [Go to Book Management](/books)
 
 ### Manage Users (Admin Only)
 
 -   **Description:** Activate or Inactivate Staff/Reader Users.
--   **URL:** [Go to User Management](/users)
 
 ### Borrowing History (Admin Only)
 
 -   **Description:** View Borrowed Books.
--   **URL:** [View Borrowed Books](/borrowed-books)
+
+## API Routes
+
+### Staff API Routes
+
+#### Staff Login
+
+-   **HTTP Method:** POST
+-   **Endpoint:** `/api/staff/create-token`
+-   **Description:** Authenticate a staff member and create an access token.
+
+#### View Books (Staff Only)
+
+-   **HTTP Method:** GET
+-   **Endpoint:** `/api/staff/books`
+-   **Description:** Retrieve a list of books accessible to staff members.
+
+#### Find a Book (Staff Only)
+
+-   **HTTP Method:** GET
+-   **Endpoint:** `/api/staff/books/{book}`
+-   **Description:** Retrieve details of a specific book.
+
+#### Create a Book (Staff Only)
+
+-   **HTTP Method:** POST
+-   **Endpoint:** `/api/staff/books`
+-   **Description:** Create a new book in the system.
+
+#### Update a Book (Staff Only)
+
+-   **HTTP Method:** PUT
+-   **Endpoint:** `/api/staff/books/{book}`
+-   **Description:** Update an existing book in the system.
+
+#### Delete a Book (Staff Only)
+
+-   **HTTP Method:** DELETE
+-   **Endpoint:** `/api/staff/books/{book}`
+-   **Description:** Delete a book from the system.
+
+#### Get Users (Staff Only)
+
+-   **HTTP Method:** GET
+-   **Endpoint:** `/api/staff/users`
+-   **Description:** Retrieve a list of users, possibly for staff management.
+
+#### Get Readers (Staff Only)
+
+-   **HTTP Method:** GET
+-   **Endpoint:** `/api/staff/readers`
+-   **Description:** Retrieve a list of reader users.
+
+### Reader API Routes
+
+#### Reader Login
+
+-   **HTTP Method:** POST
+-   **Endpoint:** `/api/reader/create-token`
+-   **Description:** Authenticate a reader and create an access token.
+
+#### View Books (Reader Only)
+
+-   **HTTP Method:** GET
+-   **Endpoint:** `/api/reader/books`
+-   **Description:** Retrieve a list of books accessible to reader users.
+
+#### Find a Book (Reader Only)
+
+-   **HTTP Method:** GET
+-   **Endpoint:** `/api/reader/books/{book}`
+-   **Description:** Retrieve details of a specific book accessible to reader users.
