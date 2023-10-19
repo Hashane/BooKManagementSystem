@@ -126,3 +126,13 @@ Here are some third-party packages used in this project to enhance its functiona
    - **Description**: Laravel Passport is employed for implementing multi-guard API authentication, allowing to have multiple types of API users, such as admin, editors, viewers, and readers, each with different access levels.
 
 These packages are crucial for enhancing the functionality and security of the application. You can find more details and usage information in the official documentation for each package.
+
+# Back up system data to another DB every week
+
+- `Artisan Command` created to backup and restore to a backup database called `book_management_backup`
+-         sail artisan database:backup
+- Created and defined the `Scheduled Task` in the `app/Console/Kernel.php` 
+- Configure Cron Job to activate the Laravel's scheduler task
+  
+        * * * * * cd /Users/****/Documents/development/book-management-system && php artisan schedule:run >> /dev/null 2>&1
+- Activate it `schedule:run`
