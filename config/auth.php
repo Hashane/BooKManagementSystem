@@ -55,6 +55,7 @@ return [
         'staff-api' => [
             'driver' => 'passport',
             'provider' => 'staffs',
+            'middleware' => ['auth:api', 'checkScope'],
         ],
     ],
 

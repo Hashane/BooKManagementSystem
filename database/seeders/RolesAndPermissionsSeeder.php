@@ -20,15 +20,15 @@ class RolesAndPermissionsSeeder extends Seeder
         $readerRole = Role::create(['name' => 'reader', 'guard_name' => 'reader']);
 
         // create permissions
-        $editBooksPermission = Permission::create(['name' => 'edit books', 'guard_name' => 'staff']);
-        $deleteBooksPermission = Permission::create(['name' => 'delete books', 'guard_name' => 'staff']);
-        $assignBooksPermission = Permission::create(['name' => 'assign books', 'guard_name' => 'staff']);
-        $manageUsersPermission = Permission::create(['name' => 'manage users', 'guard_name' => 'staff']);
-        $borrowBooksPermission = Permission::create(['name' => 'borrow books', 'guard_name' => 'reader']);
+        $editBooksPermission = Permission::create(['name' => 'edit-books', 'guard_name' => 'staff']);
+        $deleteBooksPermission = Permission::create(['name' => 'delete-books', 'guard_name' => 'staff']);
+        $assignBooksPermission = Permission::create(['name' => 'assign-books', 'guard_name' => 'staff']);
+        $manageUsersPermission = Permission::create(['name' => 'manage-users', 'guard_name' => 'staff']);
+        $borrowBooksPermission = Permission::create(['name' => 'borrow-books', 'guard_name' => 'reader']);
         // For the "staff" guard
-        $viewBooksPermissionStaff = Permission::create(['name' => 'view books', 'guard_name' => 'staff']);
+        $viewBooksPermissionStaff = Permission::create(['name' => 'view-books', 'guard_name' => 'staff']);
         // For the "reader" guard
-        $viewBooksPermissionReader = Permission::create(['name' => 'view books', 'guard_name' => 'reader']);
+        $viewBooksPermissionReader = Permission::create(['name' => 'view-books', 'guard_name' => 'reader']);
 
         // Assign Permissions to Roles
         $adminRole->givePermissionTo([

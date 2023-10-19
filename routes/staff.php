@@ -15,9 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('staff/apilogin', [StaffAPILoginController::class, 'staffLogin'])->name('staff.api-login');
+Route::post('staff/create-token', [StaffAPILoginController::class, 'staffLogin']);
 
-Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'scopes:staff']], function () {
+Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'checkScope:read-books']], function () {
+    // Routes that require 'read-books' scope
+});
 
-    Route::post('dashboard', [StaffAPILoginController::class, 'staffDashboard'])->name('staff.apidashboard');
+Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'checkScope:create-books']], function () {
+    // Routes that require 'create-books' scope
+});
+
+Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'checkScope:edit-books']], function () {
+    Route::put('books/{book}', [StaffAPILoginController::class, 'updateBook']);
 });

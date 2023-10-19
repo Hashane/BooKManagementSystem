@@ -27,7 +27,7 @@ Route::group(['prefix' => 'reader', 'middleware' => ['auth:reader-api', 'scopes:
     Route::get('list', [ReaderAPILoginController::class, 'getUsers']);
     Route::post('books', [ReaderAPILoginController::class, 'createBook']);
     Route::delete('books/{book}', [ReaderAPILoginController::class, 'destroyBook']);
-    Route::put('books/{book}', [ReaderAPILoginController::class, 'updateBook']);
+    //  Route::put('books/{book}', [ReaderAPILoginController::class, 'updateBook']);
 
     Route::post('dashboard', [ReaderAPILoginController::class, 'readerDashboard'])->name('reader.apidashboard');
 });
