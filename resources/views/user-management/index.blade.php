@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <div id="message-container"></div>
     <h1 class="mb-4">User Management</h1>
 
     <nav>

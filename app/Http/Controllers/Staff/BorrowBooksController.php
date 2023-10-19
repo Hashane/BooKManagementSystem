@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Staff;
 
 use App\Models\Book;
 use App\Models\BookAssignment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BorrowBooksController extends Controller
 {

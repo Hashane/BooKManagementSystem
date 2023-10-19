@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\APIRequestController;
 use App\Http\Controllers\Auth\ReaderLoginController;
 use App\Http\Controllers\Auth\StaffLoginController;
-use App\Http\Controllers\BorrowBooksController;
 use App\Http\Controllers\Reader\ReaderController;
 use App\Http\Controllers\Staff\BookController;
+use App\Http\Controllers\Staff\BorrowBooksController;
 use App\Http\Controllers\Staff\StaffController;
-use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\Staff\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
 
