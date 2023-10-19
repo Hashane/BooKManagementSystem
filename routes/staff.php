@@ -17,14 +17,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('staff/create-token', [StaffAPILoginController::class, 'staffLogin']);
 
-Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'checkScope:read-books']], function () {
-    // Routes that require 'read-books' scope
+Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'checkScope:view-books']], function () {
+    Route::get('books', [StaffAPILoginController::class, 'getBooks']);
+    Route::get('books/{book}', [StaffAPILoginController::class, 'findBook']);
 });
 
 Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'checkScope:create-books']], function () {
-    // Routes that require 'create-books' scope
+    Route::post('books', [StaffAPILoginController::class, 'createBook']);
+});
+
+Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'checkScope:delete-books']], function () {
+    Route::delete('books/{book}', [StaffAPILoginController::class, 'destroyBook']);
 });
 
 Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'checkScope:edit-books']], function () {
     Route::put('books/{book}', [StaffAPILoginController::class, 'updateBook']);
+});
+
+Route::group(['prefix' => 'staff', 'middleware' => ['auth:staff-api', 'checkScope:manage-users']], function () {
+    Route::get('users', [StaffAPILoginController::class, 'getUsers']);
+    Route::get('readers', [StaffAPILoginController::class, 'getReaders']);
 });

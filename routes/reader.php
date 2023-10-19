@@ -19,16 +19,7 @@ Route::post('reader/create-token', [ReaderAPILoginController::class, 'readerLogi
 
 
 // AUTHENTICATION API FOR USE
-Route::group(['prefix' => 'reader', 'middleware' => ['auth:reader-api', 'scopes:reader']], function () {
-
-
+Route::group(['prefix' => 'reader', 'middleware' => ['auth:reader-api', 'checkScope:view-books']], function () {
     Route::get('books', [ReaderAPILoginController::class, 'getBooks']);
     Route::get('books/{book}', [ReaderAPILoginController::class, 'findBook']);
-
-    Route::get('list', [ReaderAPILoginController::class, 'getUsers']);
-    Route::post('books', [ReaderAPILoginController::class, 'createBook']);
-    Route::delete('books/{book}', [ReaderAPILoginController::class, 'destroyBook']);
-    //  Route::put('books/{book}', [ReaderAPILoginController::class, 'updateBook']);
-
-    Route::post('dashboard', [ReaderAPILoginController::class, 'readerDashboard'])->name('reader.apidashboard');
 });

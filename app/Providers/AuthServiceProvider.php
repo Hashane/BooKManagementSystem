@@ -46,6 +46,7 @@ class AuthServiceProvider extends ServiceProvider
             'assign-books' => 'Assign Books',
             'manage-users' => 'Manage Users',
             'borrow-books' => 'Borrow Books',
+            'delete-books' => 'Delete Books',
         ]);
     }
 }

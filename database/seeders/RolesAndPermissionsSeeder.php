@@ -23,6 +23,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $editBooksPermission = Permission::create(['name' => 'edit-books', 'guard_name' => 'staff']);
         $deleteBooksPermission = Permission::create(['name' => 'delete-books', 'guard_name' => 'staff']);
         $assignBooksPermission = Permission::create(['name' => 'assign-books', 'guard_name' => 'staff']);
+        $createBooksPermission = Permission::create(['name' => 'create-books', 'guard_name' => 'staff']);
         $manageUsersPermission = Permission::create(['name' => 'manage-users', 'guard_name' => 'staff']);
         $borrowBooksPermission = Permission::create(['name' => 'borrow-books', 'guard_name' => 'reader']);
         // For the "staff" guard
@@ -37,6 +38,7 @@ class RolesAndPermissionsSeeder extends Seeder
             $deleteBooksPermission,
             $manageUsersPermission,
             $assignBooksPermission,
+            $createBooksPermission,
         ]);
 
         $viewerRole->givePermissionTo($viewBooksPermissionStaff);
