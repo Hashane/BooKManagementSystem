@@ -75,24 +75,28 @@ The dashboard provides an overview of various features and functionalities avail
 -   **HTTP Method:** PUT
 -   **Endpoint:** `/api/staff/books/{book}`
 -   **Description:** Update an existing book in the system.
+-   ![Alt Text](https://github.com/Hashane/BookManagementSystem/assets/12775167/bd4fb225-8633-4f1b-83e6-aa7487762d5c)
 
 #### Delete a Book (Staff Only)
 
 -   **HTTP Method:** DELETE
 -   **Endpoint:** `/api/staff/books/{book}`
 -   **Description:** Delete a book from the system.
+-   ![Alt Text](https://github.com/Hashane/BookManagementSystem/assets/12775167/010aca45-06bf-4200-a887-0314a4f95f4f)
 
 #### Get Users (Staff Only)
 
 -   **HTTP Method:** GET
 -   **Endpoint:** `/api/staff/users`
 -   **Description:** Retrieve a list of users, possibly for staff management.
-
+-   ![Alt Text](https://github.com/Hashane/BookManagementSystem/assets/12775167/590ac05d-b3db-429a-96c3-9f881ce7d0c2)
+  
 #### Get Readers (Staff Only)
 
 -   **HTTP Method:** GET
 -   **Endpoint:** `/api/staff/readers`
 -   **Description:** Retrieve a list of reader users.
+-   ![Alt Text](https://github.com/Hashane/BookManagementSystem/assets/12775167/590ac05d-b3db-429a-96c3-9f881ce7d0c2)
 
 ### Reader API Routes
 
@@ -101,6 +105,7 @@ The dashboard provides an overview of various features and functionalities avail
 -   **HTTP Method:** POST
 -   **Endpoint:** `/api/reader/create-token`
 -   **Description:** Authenticate a reader and create an access token.
+-   ![Alt Text](https://github.com/Hashane/BookManagementSystem/assets/12775167/1b3516dc-4324-40db-87bb-58a1bdaec3e7)
 
 #### View Books (Reader Only)
 
